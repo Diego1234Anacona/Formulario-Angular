@@ -1,0 +1,26 @@
+<div class="text-center m-3" >
+    Cuantas personas son para el sorteo?
+</div>
+<div class="text-center m-3" *ngIf=" sorteo && !sorteo[0]; else reiniciarSorteo">
+    <p>Faltan ( {{15-usuarios.length}} ) personas para poder sortear</p>
+    <button class="btnSorteo" (click)="sortear()" [disabled]="!usuarios || usuarios.length<14">ASIGNAR REGALOS</button>
+</div>
+<ng-template #reiniciarSorteo>
+    <div class="text-center m-3">
+
+        <button class="btn btn-danger" (click)="mostrarDialog()">Reiniciar sorteo</button>
+        <div *ngIf="mostrarConfirmacion" class="confirmacionDialog">
+
+        </div>
+    </div>
+</ng-template>
+
+<mat-tab-group>
+    <mat-tab label="Personas">
+        <ol>
+            <li *ngFor="let usuario of usuarios"> ( {{usuario.name}} ) </li>
+        </ol>
+    </mat-tab>
+
+
+</mat-tab-group>
