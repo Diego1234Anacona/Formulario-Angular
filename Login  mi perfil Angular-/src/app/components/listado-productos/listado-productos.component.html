@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="body mt-3">
+      <span class="h3 p-4">Listado de Productos</span>
+      <button class="btn btn-dark float-right mr-3" routerLink="/crear-producto"> Agregar</button>
+      <h5 *ngIf="productos.length == 0" class="p-4">No hay datos para mostrar</h5>
+      <table *ngIf="productos.length > 0" class="table table-striped mt-5">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Caracteristicas</th>
+            <th>fecha</th>
+            <th>correo</th>
+            <th>país</th>
+            <th>Precio</th>
+            <th>Unidades D</th>
+            <th>Unidades V</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let producto of productos | paginate: { itemsPerPage: 5, currentPage: pagina}">
+            <td>{{producto.nombre}}</td>
+            <td>{{producto.caracteristicas}}</td>
+            <td>{{producto.fecha}}</td>
+            <td>{{producto.correo}}</td>
+            <td>{{producto.pais}}</td>
+            <td>{{producto.precio | currency}}</td>
+            <td>{{producto.unidadesD}}</td>
+            <td>{{producto.unidadesV }}</td>
+            <td>
+              <i class="fas fa-edit mr-3" [routerLink]="['/editProducto/', producto.id]"></i>
+              <i (click)="eliminarProducto(producto.id)"class="fas fa-trash"></i>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+       <pagination-controls (pageChange)="pagina = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
