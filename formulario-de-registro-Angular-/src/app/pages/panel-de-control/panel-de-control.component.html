@@ -1,0 +1,25 @@
+<div class="text-center m-3" >
+    Cuantos alumnos para el sorteo?
+</div>
+<div class="text-center m-3" *ngIf=" sorteo && !sorteo[0]; else reiniciarSorteo">
+    <button class="btnSorteo" (click)="sortear()" [disabled]="!usuarios || usuarios.length14"></button>
+</div>
+<ng-template #reiniciarSorteo>
+    <div class="text-center m-3">
+
+        <button class="btn btn-danger" (click)="mostrarDialog()">Reiniciar sorteo</button>
+        <div *ngIf="mostrarConfirmacion" class="confirmacionDialog">
+
+        </div>
+    </div>
+</ng-template>
+
+<mat-tab-group>
+    <mat-tab label="Alumnos">
+        <ol>
+            <li *ngFor="let usuario of usuarios"> ( {{usuario.name}} ) </li>
+        </ol>
+    </mat-tab>
+
+
+</mat-tab-group>
